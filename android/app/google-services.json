@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "449724422600",
+    "project_id": "fir-9d1b7",
+    "storage_bucket": "fir-9d1b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449724422600:android:0aeb672e60572e55c588fd",
+        "android_client_info": {
+          "package_name": "com.example.digiprod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Q3OrfKDEhQIMP1NU23WrkqK5pNt3UII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
