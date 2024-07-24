@@ -3,7 +3,6 @@ import 'package:digiprod/features/shop/controllers/home_controller.dart';
 import 'package:digiprod/features/shop/screens/home/widgets/buttonWithIcon.dart';
 import 'package:digiprod/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -24,7 +23,7 @@ class PCarouselSlider extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            //viewportFraction: 1,
+            viewportFraction: 1,
             onPageChanged: (index,_) => controller.updatePageIndicator(index)
           ),
           items: banners.map((url) => PRoundedImage(image: url,)).toList(),

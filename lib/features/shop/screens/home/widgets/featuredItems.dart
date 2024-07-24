@@ -15,13 +15,7 @@ class FeaturedItems extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
 
-    return Obx( () {
-      if(categoryController.isLoading.value) return const PCategoryShimmer();
-
-      if(categoryController.featuredCategories.isEmpty){
-        return Center(child: Text('No Data Found!',style: TextStyle(color: Colors.white,fontSize: 12),),);
-      }
-      return Container(
+    return Container(
         padding: const EdgeInsets.symmetric(horizontal: PSizes.defaultSpace/2),
         width: double.infinity,
         height: 87,
@@ -29,7 +23,15 @@ class FeaturedItems extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16)
         ),
-        child: ListView.separated(
+
+    child:Obx( () {
+      if(categoryController.isLoading.value) return const PCategoryShimmer();
+
+      if(categoryController.featuredCategories.isEmpty){
+        return Center(child: Text('No Data Found!',style: TextStyle(color: Colors.white,fontSize: 12),),);
+      }
+      
+        return ListView.separated(
           shrinkWrap: true,
           itemCount: categoryController.featuredCategories.length,
           scrollDirection: Axis.horizontal,
@@ -47,7 +49,10 @@ class FeaturedItems extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100)
                     ),
-                    child: Image(image:NetworkImage(category.image),fit: BoxFit.cover,),
+                    child: Image.network(category.image,
+                    errorBuilder: (context, error, stackTrace) {
+    return Icon(Icons.error); // Show an error icon or placeholder
+  },),
                   ),
                   
                   const SizedBox(height: PSizes.xs,),
@@ -57,10 +62,11 @@ class FeaturedItems extends StatelessWidget {
                 ],
               ),
             );
-          }),
-      );
+          });
     }
+      ),
     );
+    }
   }
-}
+
 

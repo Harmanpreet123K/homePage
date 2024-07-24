@@ -31,15 +31,7 @@ class PFirebaseStorageService extends GetxController{
       final url = await ref.getDownloadURL();
       return url;
     }catch(e){
-      if(e is FirebaseException){
-        throw 'Firebase Exception: ${e.message}';
-      }else if(e is SocketException){
-        throw 'Network Error: ${e.message}';
-      }else if(e is PlatformException){
-        throw 'Platform Exception: ${e.message}';
-      }else{
-        throw 'Something went wrong! Please try again';
-      }
+      return _handleStorageException(e);
     }
   }
 
@@ -50,15 +42,20 @@ class PFirebaseStorageService extends GetxController{
       final url = await ref.getDownloadURL();
       return url;
     }catch(e){
-      if(e is FirebaseException){
-        throw 'Firebase Exception: ${e.message}';
-      }else if(e is SocketException){
-        throw 'Network Error: ${e.message}';
-      }else if(e is PlatformException){
-        throw 'Platform Exception: ${e.message}';
-      }else{
-        throw 'Something went wrong! Please try again';
-      }
+      return _handleStorageException(e);
+    }
+  }
+
+  /// Handles Firebase Storage exceptions
+  String _handleStorageException(dynamic e) {
+    if (e is FirebaseException) {
+      throw 'Firebase Exception: ${e.message}';
+    } else if (e is SocketException) {
+      throw 'Network Error: ${e.message}';
+    } else if (e is PlatformException) {
+      throw 'Platform Exception: ${e.message}';
+    } else {
+      throw 'Something went wrong! Please try again';
     }
   }
 }
